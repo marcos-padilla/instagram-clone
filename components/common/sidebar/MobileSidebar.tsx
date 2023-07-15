@@ -26,7 +26,7 @@ export default function MobileSidebar({ items }: { items: Item[] }) {
 					<AiOutlineHeart size={25} />
 				</div>
 			</div>
-			<div className='flex justify-evenly border-neutral-600 border-t sm:hidden sm:flex py-2 fixed bottom-0 inset-x-0'>
+			<div className='flex justify-evenly border-neutral-600 border-t sm:hidden py-2 fixed bottom-0 inset-x-0'>
 				{items.map((item, index) => (
 					<MobileItem
 						key={index}
