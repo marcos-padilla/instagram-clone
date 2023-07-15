@@ -2,6 +2,53 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+/* Fondo del scrollbar */
+::-webkit-scrollbar-track {
+	background: #121212;
+}
+
+/* Color del thumb (barra deslizante) */
+::-webkit-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+/* Estilo del thumb al pasar el mouse por encima */
+::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Estilo del thumb al estar activo (haciendo clic) */
+::-webkit-scrollbar-thumb:active {
+	background: #333;
+}
+
+/* Fondo del scrollbar */
+* {
+	scrollbar-color: #888 #121212;
+	scrollbar-width: thin;
+}
+
+/* Color del thumb (barra deslizante) */
+*::-moz-scrollbar-thumb {
+	background: #888;
+	border-radius: 4px;
+}
+
+/* Estilo del thumb al pasar el mouse por encima */
+*::-moz-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* Estilo del thumb al estar activo (haciendo clic) */
+*::-moz-scrollbar-thumb:active {
+	background: #333;
+}
 :root,
 html,
 body {
