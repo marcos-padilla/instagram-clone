@@ -9,7 +9,7 @@ import {
 export default function MobileSidebar({ items }: { items: Item[] }) {
 	return (
 		<>
-			<div className='flex border-b sm:hidden border-neutral-600 p-4 items-center justify-between fixed top-0 inset-x-0'>
+			<div className='flex border-b sm:hidden border-neutral-600 p-4 items-center justify-between fixed top-0 inset-x-0 z-50 bg-black'>
 				<button className='flex items-center justify-center gap-2'>
 					<span className='text-2xl'>Instagram</span>{' '}
 					<AiOutlineArrowDown />{' '}
@@ -26,7 +26,7 @@ export default function MobileSidebar({ items }: { items: Item[] }) {
 					<AiOutlineHeart size={25} />
 				</div>
 			</div>
-			<div className='flex justify-evenly border-neutral-600 border-t sm:hidden py-2 fixed bottom-0 inset-x-0'>
+			<div className='flex justify-evenly border-neutral-600 border-t sm:hidden py-2 fixed bottom-0 inset-x-0 z-50 bg-black'>
 				{items.map((item, index) => (
 					<MobileItem
 						key={index}
