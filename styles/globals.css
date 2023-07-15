@@ -6,4 +6,6 @@
 html,
 body {
 	@apply h-full;
+	overflow: hidden;
+	transition: all 0.3s linear;
 }

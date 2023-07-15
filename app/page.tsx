@@ -19,7 +19,8 @@ export default function AuthPage() {
 		setVariant((prev) => (prev === 'LOGIN' ? 'REGISTER' : 'LOGIN'))
 	}
 
-	const handleSubmit = () => {
+	const handleSubmit = (e: any) => {
+		e.preventDefault()
 		router.push('/home')
 	}
 
