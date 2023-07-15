@@ -5,6 +5,8 @@ import Input from '@/components/form/Input'
 import HomePhones from '@/components/pages/auth/HomePhones'
 import { FcGoogle } from 'react-icons/fc'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
+import instagramLogo from '@/public/images/Instagram_logo.png'
 type Variant = 'LOGIN' | 'REGISTER'
 
 export default function AuthPage() {
@@ -32,7 +34,7 @@ export default function AuthPage() {
 					onSubmit={handleSubmit}
 					className='border-gray-400 border-2 flex flex-col gap-y-4 p-10 items-center justify-center w-[500px]'
 				>
-					<h1 className='text-[4rem] font-medium'>Instagram</h1>
+					<Image src={instagramLogo} alt='Instagram Logo' />
 					{variant === 'REGISTER' && (
 						<h2 className='text-gray-500 font-semibold text-2xl'>
 							Sign up to see photos and videos from your
