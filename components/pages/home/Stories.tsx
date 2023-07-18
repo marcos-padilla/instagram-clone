@@ -21,7 +21,7 @@ const Story = ({ avatar, name }: { avatar?: string; name: string }) => {
 
 export default function Stories() {
 	return (
-		<div className='flex gap-x-4 overflow-x-scroll my-10'>
+		<div className='flex gap-x-4 overflow-x-scroll my-10 mx-10'>
 			<Story name='Jhon Doe' />
 			<Story name='Jhon Doe' />
 			<Story name='Jhon Doe' />

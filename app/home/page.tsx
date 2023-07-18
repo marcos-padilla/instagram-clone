@@ -1,5 +1,6 @@
 import PostList from '@/components/pages/home/PostList'
 import Stories from '@/components/pages/home/Stories'
+import SuggestedAccounts from '@/components/pages/home/SuggestedAccounts'
 
 export default function HomePage() {
 	return (
@@ -8,8 +9,8 @@ export default function HomePage() {
 				<Stories />
 				<PostList />
 			</main>
-			<aside className='bg-green-500 hidden lg:flex shrink-0'>
-				Suggestedasd asdsdadasdasd asdasd
+			<aside className='hidden lg:flex shrink-0 mt-10'>
+				<SuggestedAccounts />
 			</aside>
 		</>
 	)
