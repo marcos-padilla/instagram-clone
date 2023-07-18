@@ -27,12 +27,12 @@ export default function AuthPage() {
 	}
 
 	return (
-		<main className='h-full bg-white flex items-center justify-center'>
+		<main className='h-[100vh] w-[100vw] bg-white flex items-center justify-center'>
 			<HomePhones />
 			<div className='flex flex-col gap-y-10'>
 				<form
 					onSubmit={handleSubmit}
-					className='border-gray-400 border-2 flex flex-col gap-y-4 p-10 items-center justify-center w-[500px]'
+					className='border-gray-400 border-2 flex flex-col gap-y-4 md:p-10 p-2 items-center justify-center'
 				>
 					<Image src={instagramLogo} alt='Instagram Logo' />
 					{variant === 'REGISTER' && (
@@ -100,7 +100,7 @@ export default function AuthPage() {
 						</button>
 					)}
 				</form>
-				<div className='border-gray-400 border-2 flex gap-x-4 p-10 items-center justify-center w-[500px]'>
+				<div className='border-gray-400 border-2 flex gap-x-4 md:p-10 p-2 items-center justify-center'>
 					<span>Don't have an account?</span>
 					<button
 						className='text-blue-500 font-bold'

@@ -54,8 +54,5 @@ html,
 body {
 	@apply h-full;
 	transition: all 0.3s linear;
-}
-
-body {
 	background-color: black;
 }

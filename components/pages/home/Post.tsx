@@ -1,6 +1,8 @@
 'use client'
 
 import Modal from '@/components/Modal'
+import { usePostModal } from '@/context/PostModalProvider'
+import { Post } from '@/types/types'
 import clsx from 'clsx'
 import Image from 'next/image'
 import { useState } from 'react'
@@ -12,56 +14,13 @@ import {
 } from 'react-icons/ai'
 
 import { BsBookmark, BsEmojiSmile } from 'react-icons/bs'
-
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
-interface PostProps {
-	image: string
-	text?: string
-}
 
-const postModalOptions = [
-	{
-		label: 'Report',
-		className: 'text-red-600',
-	},
-	{
-		label: 'Unfollow',
-		className: 'text-red-600',
-	},
-	{
-		label: 'Add to favorites',
-	},
-	{
-		label: 'Go to post',
-	},
-	{
-		label: 'Share to...',
-	},
-	{
-		label: 'Copy link',
-	},
-]
-
-export default function Post({ image, text }: PostProps) {
-	const [modalOpen, setIsModalOpen] = useState(false)
-
+export default function Post({ post }: { post: Post }) {
+	const { setPost } = usePostModal()
 	return (
 		<>
-			<Modal isOpen={modalOpen} onClose={() => setIsModalOpen(false)}>
-				<div className='flex w-full flex-col items-center'>
-					{postModalOptions.map((option, index) => (
-						<span
-							className={clsx(
-								'font-bold my-2 text-xl border-b border-neutral-700 w-full text-center pb-4',
-								option.className && option.className
-							)}
-						>
-							{option.label}
-						</span>
-					))}
-				</div>
-			</Modal>
-			<div className='flex flex-col gap-y-2 w-[80%]'>
+			<div className='flex flex-col gap-y-2 md:w-[80%] w-full px-4'>
 				<div className='flex items-center justify-between w-full'>
 					<div className='flex items-center gap-x-2'>
 						<Image
@@ -85,17 +44,22 @@ export default function Post({ image, text }: PostProps) {
 					</div>
 					<HiOutlineDotsHorizontal
 						className='cursor-pointer hover:text-gray-600'
-						onClick={() => setIsModalOpen(true)}
+						onClick={() => {
+							console.log('Clicked')
+							setPost(post)
+						}}
 					/>
 				</div>
 				<div className='border border-neutral-600 rounded-sm relative w-full h-[350px] overflow-hidden'>
-					<Image
-						src={image}
-						fill
-						objectFit='cover'
-						alt='Post image'
-						className='hover:scale-105 transition-all cursor-pointer'
-					/>
+					{post?.images[0] && (
+						<Image
+							src={post?.images[0]}
+							fill
+							objectFit='cover'
+							alt='Post image'
+							className='hover:scale-105 transition-all cursor-pointer'
+						/>
+					)}
 					<button className='absolute bottom-5 left-5 p-2 bg-black rounded-full hover:scale-110 transition-all'>
 						<AiOutlineUser />
 					</button>
@@ -123,7 +87,7 @@ export default function Post({ image, text }: PostProps) {
 				<span className='flex items-center justify-start font-bold text-sm'>
 					548 likes
 				</span>
-				<span className='text-sm'>{text}</span>
+				<span className='text-sm'>{post?.text}</span>
 				<span className='text-xs text-neutral-500 hover:text-neutral-400 cursor-pointer mb-5'>
 					View all 20 comments
 				</span>

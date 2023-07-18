@@ -8,7 +8,7 @@ export default function HomeLayout({
 	return (
 		<div className='w-full h-full bg-black text-white '>
 			<Sidebar />
-			<main className='flex gap-2 md:pr-[50px] md:pl-[250px] md:pt-[30px] sm:pt-[40px] sm:pl-[100px] px-[20px] pt-[70px]'>
+			<main className='flex gap-2 md:pr-[50px] md:pl-[250px] md:pt-[30px] sm:pt-[40px] sm:pl-[100px] pt-[70px]'>
 				{children}
 			</main>
 		</div>

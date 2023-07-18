@@ -5,13 +5,20 @@ import {
 	AiOutlineHeart,
 	AiOutlineSearch,
 } from 'react-icons/ai'
+import instagramLogo from '@/public/images/Instagram_logo_white.png'
+import Image from 'next/image'
 
 export default function MobileSidebar({ items }: { items: Item[] }) {
 	return (
 		<>
 			<div className='flex border-b sm:hidden border-neutral-600 p-4 items-center justify-between fixed top-0 inset-x-0 z-50 bg-black'>
 				<button className='flex items-center justify-center gap-2'>
-					<span className='text-2xl'>Instagram</span>{' '}
+					<Image
+						src={instagramLogo}
+						width={100}
+						height={50}
+						alt='Instagram logo'
+					/>
 					<AiOutlineArrowDown />{' '}
 				</button>
 				<div className='flex items-center gap-2'>

@@ -14,14 +14,14 @@ const Story = ({ avatar, name }: { avatar?: string; name: string }) => {
 					alt='Avatar'
 				/>
 			</div>
-			<span className='text-xs'>{name}</span>
+			<span className='text-[.5rem]'>{name}</span>
 		</button>
 	)
 }
 
 export default function Stories() {
 	return (
-		<div className='flex gap-x-4 overflow-x-scroll mb-10'>
+		<div className='flex gap-x-4 overflow-x-scroll my-10'>
 			<Story name='Jhon Doe' />
 			<Story name='Jhon Doe' />
 			<Story name='Jhon Doe' />
