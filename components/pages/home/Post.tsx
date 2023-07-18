@@ -57,7 +57,7 @@ export default function Post({ post }: { post: Post }) {
 							fill
 							objectFit='cover'
 							alt='Post image'
-							className='hover:scale-105 transition-all cursor-pointer'
+							className='hover:scale-105 transition-all duration-500 cursor-pointer'
 						/>
 					)}
 					<button className='absolute bottom-5 left-5 p-2 bg-black rounded-full hover:scale-110 transition-all'>
