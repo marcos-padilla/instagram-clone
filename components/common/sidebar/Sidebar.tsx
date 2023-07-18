@@ -14,7 +14,7 @@ import { useMemo, useState } from 'react'
 export default function Sidebar() {
 	const [postModalOpen, setPostModalOpen] = useState(false)
 
-	const items = useMemo(() => {
+	const desktopItems = useMemo(() => {
 		return [
 			{
 				label: 'Home',
@@ -40,14 +40,35 @@ export default function Sidebar() {
 		]
 	}, [postModalOpen])
 
+	const mobileItems = useMemo(() => {
+		return [
+			{
+				label: 'Home',
+				icon: AiOutlineHome,
+			},
+			{
+				label: 'Reels',
+				icon: AiOutlineVideoCamera,
+			},
+			{
+				label: 'Create',
+				icon: AiOutlinePlus,
+				onClick: () => setPostModalOpen(true),
+			},
+			{
+				label: 'Messages',
+				icon: AiOutlineMessage,
+			},
+		]
+	}, [postModalOpen])
 	return (
 		<>
 			<NewPostModal
 				isOpen={postModalOpen}
 				onClose={() => setPostModalOpen(false)}
 			/>
-			<DesktopSidebar items={items} />
-			<MobileSidebar items={items} />
+			<DesktopSidebar items={desktopItems} />
+			<MobileSidebar items={mobileItems} />
 		</>
 	)
 }
