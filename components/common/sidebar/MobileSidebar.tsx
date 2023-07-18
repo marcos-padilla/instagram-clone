@@ -8,7 +8,11 @@ import {
 import instagramLogo from '@/public/images/Instagram_logo_white.png'
 import Image from 'next/image'
 
-export default function MobileSidebar({ items }: { items: Item[] }) {
+interface MobileSidebarProps {
+	items: Item[]
+}
+
+export default function MobileSidebar({ items }: MobileSidebarProps) {
 	return (
 		<>
 			<div className='flex border-b sm:hidden border-neutral-600 p-4 items-center justify-between fixed top-0 inset-x-0 z-50 bg-black'>
@@ -35,11 +39,7 @@ export default function MobileSidebar({ items }: { items: Item[] }) {
 			</div>
 			<div className='flex justify-evenly border-neutral-600 border-t sm:hidden py-2 fixed bottom-0 inset-x-0 z-50 bg-black'>
 				{items.map((item, index) => (
-					<MobileItem
-						key={index}
-						label={item.label}
-						icon={item.icon}
-					/>
+					<MobileItem key={index} item={item} />
 				))}
 			</div>
 		</>

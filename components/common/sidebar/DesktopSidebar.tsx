@@ -4,7 +4,12 @@ import { Item } from '@/types/types'
 import clsx from 'clsx'
 import Image from 'next/image'
 import instagramLogo from '@/public/images/Instagram_logo_white.png'
-export default function DesktopSidebar({ items }: { items: Item[] }) {
+
+interface DesktopSidebarProps {
+	items: Item[]
+}
+
+export default function DesktopSidebar({ items }: DesktopSidebarProps) {
 	return (
 		<div className='flex-col justify-between border-neutral-600 border-r h-full pt-10 px-2 fixed md:w-[200px] sm:w-[60px] hidden sm:flex '>
 			<div className='flex flex-col gap-y-5'>
@@ -22,14 +27,15 @@ export default function DesktopSidebar({ items }: { items: Item[] }) {
 					</span>
 				</button>
 				{items.map((item, index) => (
-					<DesktopItem
-						key={index}
-						label={item.label}
-						icon={item.icon}
-					/>
+					<DesktopItem key={index} item={item} />
 				))}
 			</div>
-			<DesktopItem label='More' icon={AiOutlineMenu} />
+			<DesktopItem
+				item={{
+					label: 'More',
+					icon: AiOutlineMenu,
+				}}
+			/>
 		</div>
 	)
 }
