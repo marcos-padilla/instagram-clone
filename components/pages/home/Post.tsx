@@ -16,9 +16,8 @@ import {
 import { BsBookmark, BsEmojiSmile } from 'react-icons/bs'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import styles from '@/styles/components/post.module.scss'
-import { useEffect, useState } from 'react'
+import { useRef, useState } from 'react'
 import clsx from 'clsx'
-import { clearTimeout } from 'timers'
 
 export default function Post({ post }: { post: Post }) {
 	if (!post) return null
@@ -26,6 +25,7 @@ export default function Post({ post }: { post: Post }) {
 	const { setPost } = usePostModal()
 	const [imageIndex, setImageIndex] = useState(0)
 	const [userPopup, setUserPopup] = useState(false)
+	const timeoutRef = useRef<number | null>(null)
 
 	const nextImage = () =>
 		setImageIndex((prev) =>
@@ -43,9 +43,18 @@ export default function Post({ post }: { post: Post }) {
 					<button
 						className='flex items-center gap-x-2 relative'
 						onMouseEnter={() => {
-							setUserPopup(true)
+							if (timeoutRef.current) {
+								clearTimeout(timeoutRef.current)
+							}
+							timeoutRef.current = window.setTimeout(
+								() => setUserPopup(true),
+								500
+							)
 						}}
 						onMouseLeave={() => {
+							if (timeoutRef.current) {
+								clearTimeout(timeoutRef.current)
+							}
 							setUserPopup(false)
 						}}
 					>
