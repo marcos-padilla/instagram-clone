@@ -11,7 +11,7 @@ interface NewPostModalProps {
 export default function NewPostModal({ isOpen, onClose }: NewPostModalProps) {
 	return (
 		<Modal isOpen={isOpen} onClose={onClose}>
-			<div className='w-[300px] h-[300px]'>
+			<div className='w-full h-[300px]'>
 				<span className='flex justify-center text-xs py-2 border-b'>
 					Create new post
 				</span>
