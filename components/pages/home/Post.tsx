@@ -11,6 +11,7 @@ import {
 	AiOutlineUser,
 	AiOutlineLeft,
 	AiOutlineRight,
+	AiFillHeart,
 } from 'react-icons/ai'
 
 import { BsBookmark, BsEmojiSmile } from 'react-icons/bs'
@@ -26,6 +27,8 @@ export default function Post({ post }: { post: Post }) {
 	const [imageIndex, setImageIndex] = useState(0)
 	const [userPopup, setUserPopup] = useState(false)
 	const timeoutRef = useRef<number | null>(null)
+
+	const [isLiked, setIsLiked] = useState(false)
 
 	const nextImage = () =>
 		setImageIndex((prev) =>
@@ -243,10 +246,21 @@ export default function Post({ post }: { post: Post }) {
 				</div>
 				<div className='flex items-center justify-between'>
 					<div className='flex items-center gap-x-5'>
-						<AiOutlineHeart
-							size={30}
-							className='hover:text-neutral-600 transition-all cursor-pointer'
-						/>
+						{isLiked ? (
+							<AiFillHeart
+								size={30}
+								color='red'
+								cursor='pointer'
+								onClick={() => setIsLiked(false)}
+								className={styles.like_hearth}
+							/>
+						) : (
+							<AiOutlineHeart
+								size={30}
+								className='hover:text-neutral-600 transition-all cursor-pointer'
+								onClick={() => setIsLiked(true)}
+							/>
+						)}
 						<AiOutlineMessage
 							size={30}
 							className='hover:text-neutral-600 transition-all cursor-pointer'

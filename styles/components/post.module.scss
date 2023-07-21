@@ -43,3 +43,18 @@
 		}
 	}
 }
+
+.like_hearth {
+	animation: likeit 500ms forwards linear;
+	@keyframes likeit {
+		0% {
+			scale: 1;
+		}
+		40% {
+			scale: 1.2;
+		}
+		100% {
+			scale: 1;
+		}
+	}
+}
