@@ -88,24 +88,28 @@ export default function Post({ post }: { post: Post }) {
 									</div>
 								))}
 							</div>
-							<button
-								className={clsx(
-									styles.control_button,
-									styles.prev
-								)}
-								onClick={prevImage}
-							>
-								<AiOutlineLeft size={20} />
-							</button>
-							<button
-								className={clsx(
-									styles.control_button,
-									styles.next
-								)}
-								onClick={nextImage}
-							>
-								<AiOutlineRight size={20} />
-							</button>
+							{imageIndex > 0 && (
+								<button
+									className={clsx(
+										styles.control_button,
+										styles.prev
+									)}
+									onClick={prevImage}
+								>
+									<AiOutlineLeft size={20} />
+								</button>
+							)}
+							{imageIndex < post.images.length - 1 && (
+								<button
+									className={clsx(
+										styles.control_button,
+										styles.next
+									)}
+									onClick={nextImage}
+								>
+									<AiOutlineRight size={20} />
+								</button>
+							)}
 							<div className={styles.controls}>
 								{post.images.map((_, index) => {
 									return (

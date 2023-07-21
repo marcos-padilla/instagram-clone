@@ -3,6 +3,7 @@ import { usePostModal } from '@/context/PostModalProvider'
 import Post from './Post'
 import Modal from '@/components/Modal'
 import clsx from 'clsx'
+import { Popover } from '@headlessui/react'
 
 const posts = [
 	{
