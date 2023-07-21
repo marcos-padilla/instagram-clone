@@ -51,7 +51,7 @@ export default function Post({ post }: { post: Post }) {
 					>
 						<div
 							className={clsx(
-								'absolute bg-neutral-900 top-[50%] z-50 p-4 rounded-md left-[20%] w-[300px]',
+								'absolute bg-neutral-900 top-[50%] z-50 p-4 rounded-md left-[20%] w-[300px] cursor-default',
 								userPopup ? 'block' : 'hidden'
 							)}
 						>
