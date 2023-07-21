@@ -1,3 +1,4 @@
+import AuthProvider from '@/context/AuthProvider'
 import PostModalProvider from '@/context/PostModalProvider'
 import '@/styles/globals.css'
 import type { Metadata } from 'next'
@@ -15,7 +16,9 @@ export default function RootLayout({
 	return (
 		<html lang='en'>
 			<body>
-				<PostModalProvider>{children}</PostModalProvider>
+				<AuthProvider>
+					<PostModalProvider>{children}</PostModalProvider>
+				</AuthProvider>
 			</body>
 		</html>
 	)
