@@ -18,12 +18,14 @@ import { HiOutlineDotsHorizontal } from 'react-icons/hi'
 import styles from '@/styles/components/post.module.scss'
 import { useEffect, useState } from 'react'
 import clsx from 'clsx'
+import { clearTimeout } from 'timers'
 
 export default function Post({ post }: { post: Post }) {
 	if (!post) return null
 
 	const { setPost } = usePostModal()
 	const [imageIndex, setImageIndex] = useState(0)
+	const [userPopup, setUserPopup] = useState(false)
 
 	const nextImage = () =>
 		setImageIndex((prev) =>
@@ -38,7 +40,97 @@ export default function Post({ post }: { post: Post }) {
 		<>
 			<div className='flex flex-col gap-y-2 md:w-[80%] w-full px-4'>
 				<div className='flex items-center justify-between w-full'>
-					<div className='flex items-center gap-x-2'>
+					<button
+						className='flex items-center gap-x-2 relative'
+						onMouseEnter={() => {
+							setUserPopup(true)
+						}}
+						onMouseLeave={() => {
+							setUserPopup(false)
+						}}
+					>
+						<div
+							className={clsx(
+								'absolute bg-neutral-900 top-[50%] z-50 p-4 rounded-md left-[20%] w-[300px]',
+								userPopup ? 'block' : 'hidden'
+							)}
+						>
+							<div className='flex flex-col'>
+								<div className='flex gap-x-2 mt-2 mb-4'>
+									<Image
+										src={
+											'/images/avatar_placeholder.png'
+										}
+										width={40}
+										height={40}
+										alt={'User avatar'}
+										className='rounded-full'
+									/>
+									<div className='flex flex-col items-start justify-start'>
+										<span className='text-sm text-white font-bold'>
+											jhondoe
+										</span>
+										<span className='text-[10px]'>
+											Jhon Doe
+										</span>
+									</div>
+								</div>
+								<div className='flex justify-evenly text-sm mt-2 mb-4'>
+									<div className='flex flex-col'>
+										<span>314</span>
+										<span className='text-xs text-neutral-400'>
+											Post
+										</span>
+									</div>
+									<div className='flex flex-col'>
+										<span>271</span>
+										<span className='text-xs text-neutral-400'>
+											Followers
+										</span>
+									</div>
+									<div className='flex flex-col'>
+										<span>161</span>
+										<span className='text-xs text-neutral-400'>
+											Following
+										</span>
+									</div>
+								</div>
+								<div className='flex items-center justify-center gap-x-1'>
+									<Image
+										src={post.images[0]}
+										alt='Image'
+										width={100}
+										height={100}
+										objectFit='cover'
+										className='h-[100px] w-[90px]'
+									/>
+									<Image
+										src={post.images[0]}
+										alt='Image'
+										width={100}
+										height={100}
+										objectFit='cover'
+										className='h-[100px] w-[90px]'
+									/>
+									<Image
+										src={post.images[0]}
+										alt='Image'
+										width={100}
+										height={100}
+										objectFit='cover'
+										className='h-[100px] w-[90px]'
+									/>
+								</div>
+								<div className='flex justify-center gap-x-5 my-5'>
+									<button className='bg-blue-700 hover:bg-blue-600 transition w-full px-4 py-1 rounded-md'>
+										Message
+									</button>
+									<button className='bg-neutral-700 hover:bg-neutral-600 w-full transition px-4 py-1 rounded-md'>
+										Follow
+									</button>
+								</div>
+							</div>
+						</div>
 						<Image
 							src={'/images/avatar_placeholder.png'}
 							width={20}
@@ -57,7 +149,7 @@ export default function Post({ post }: { post: Post }) {
 								Some extra data
 							</span>
 						</div>
-					</div>
+					</button>
 					<HiOutlineDotsHorizontal
 						className='cursor-pointer hover:text-gray-600'
 						onClick={() => {
