@@ -7,6 +7,7 @@ export type Item = {
 }
 
 export type Post = {
+	id: string
 	userId: string
 	images: string[]
 	text?: string

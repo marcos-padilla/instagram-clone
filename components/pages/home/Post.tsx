@@ -3,21 +3,37 @@
 import Modal from '@/components/Modal'
 import { usePostModal } from '@/context/PostModalProvider'
 import { Post } from '@/types/types'
-import clsx from 'clsx'
 import Image from 'next/image'
-import { useState } from 'react'
 import {
 	AiOutlineHeart,
 	AiOutlineMessage,
 	AiOutlineSend,
 	AiOutlineUser,
+	AiOutlineLeft,
+	AiOutlineRight,
 } from 'react-icons/ai'
 
 import { BsBookmark, BsEmojiSmile } from 'react-icons/bs'
 import { HiOutlineDotsHorizontal } from 'react-icons/hi'
+import styles from '@/styles/components/post.module.scss'
+import { useEffect, useState } from 'react'
+import clsx from 'clsx'
 
 export default function Post({ post }: { post: Post }) {
+	if (!post) return null
+
 	const { setPost } = usePostModal()
+	const [imageIndex, setImageIndex] = useState(0)
+
+	const nextImage = () =>
+		setImageIndex((prev) =>
+			prev < post?.images.length - 1 ? prev + 1 : 0
+		)
+	const prevImage = () =>
+		setImageIndex((prev) =>
+			prev > 0 ? prev - 1 : post?.images.length - 1
+		)
+
 	return (
 		<>
 			<div className='flex flex-col gap-y-2 md:w-[80%] w-full px-4'>
@@ -51,13 +67,69 @@ export default function Post({ post }: { post: Post }) {
 					/>
 				</div>
 				<div className='border border-neutral-600 rounded-sm relative w-full h-[350px] overflow-hidden'>
-					{post?.images[0] && (
+					{post?.images.length > 1 ? (
+						<div className={styles.slider}>
+							<div className='w-full h-full'>
+								{post.images.map((img, index) => (
+									<div
+										className={clsx(
+											'relative h-full w-full',
+											index === imageIndex
+												? 'block'
+												: 'hidden'
+										)}
+									>
+										<Image
+											src={img}
+											alt='Image'
+											fill
+											objectFit='cover'
+										/>
+									</div>
+								))}
+							</div>
+							<button
+								className={clsx(
+									styles.control_button,
+									styles.prev
+								)}
+								onClick={prevImage}
+							>
+								<AiOutlineLeft size={20} />
+							</button>
+							<button
+								className={clsx(
+									styles.control_button,
+									styles.next
+								)}
+								onClick={nextImage}
+							>
+								<AiOutlineRight size={20} />
+							</button>
+							<div className={styles.controls}>
+								{post.images.map((_, index) => {
+									return (
+										<button
+											className={clsx(
+												index ===
+													imageIndex &&
+													styles.active
+											)}
+											key={index}
+											onClick={() =>
+												setImageIndex(index)
+											}
+										/>
+									)
+								})}
+							</div>
+						</div>
+					) : (
 						<Image
 							src={post?.images[0]}
 							fill
 							objectFit='cover'
 							alt='Post image'
-							className='hover:scale-105 transition-all duration-500 cursor-pointer'
 						/>
 					)}
 					<button className='absolute bottom-5 left-5 p-2 bg-black rounded-full hover:scale-110 transition-all'>
